@@ -1,0 +1,33 @@
+naver 개발자 등록 - 카드등록까지 마치기
+
+naver 정책 : 600만 조회까지는 무료, 카드 등록해야함
+Daum 정책 : 같긴 하지만, 카드 먼저 등록안해도 됨
+
+서비스 - application service - maps선택
+
+이용신청하기
+
+application 이름 정하기 
+
+maps - web dynamic map check : 길찾기, 확대 축소 가능한 맵
+
+*dothome.co.kr들어가서 도메인 주소 받기*
+login - 마이닷홈
+
+마이닷홈에서 호스팅 들어가서 주소 복사
+
+다시 클라우드와서
+
+http://넣어서 주소 넣고난다음에
+생성
+
+그 후에 인증정보 눌러서
+Cloud ID 복사 : y0eulc2lst
+
+서비스 구분의 작은 아이콘 클릭
+Web Dynamic Map V3 사이트 바로 가기
+시작하기
+
+코드 복사후에 naver_map.html로 저장
+
+코드내에서 your_clienet ID를 바꾸기 전에 복사한거로!
