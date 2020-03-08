@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>간단한 지도 표시하기</title>
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=y0eulc2lst&submodules=geocoder"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+  <div class="map_wrap">
+    <div id="map" style="width:100%;height:600px;overflow:hidden;">
+      <button id="traffic" type="button" class="btn btn-info btn-sm">교통상황</button>
+    </div>
+  </div>
+
+  <!-- map변수 -->
+  <script>
+    var map = new naver.maps.Map('map', {
+      center: new naver.maps.LatLng(37.3595704, 127.105399),
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: naver.maps.MapTypeControlStyle.DROPDOWN
+      }
+    });
+  </script>
+
+  <!-- 교통상황 관련 코드 -->
+  <script>
+    var trafficLayer = new naver.maps.TrafficLayer({
+      interval: 300000 // 5분마다 새로고침 (최소값 5분)
+    });
+
+    var btn_traffic = $('#traffic');
+    var btn_refresh = $("#autorefresh");
+
+    //교통상황 버튼을 눌렀을 때
+    naver.maps.Event.addListener(map, 'trafficLayer_changed', function(trafficLayer) {
+      if (trafficLayer) {
+        btn_traffic.addClass('control-on');
+        $("#autorefresh").parent().show();
+        $("#autorefresh")[0].checked = true;
+      } else {
+        btn_traffic.removeClass('control-on');
+        $("#autorefresh").parent().hide();
+      }
+    });
+
+    btn_traffic.on("click", function(e) {
+      e.preventDefault();
+
+      if (trafficLayer.getMap()) {
+        trafficLayer.setMap(null);
+      } else {
+        trafficLayer.setMap(map);
+      }
+    });
+
+    //autorefresh버튼을 눌렀을 때
+    btn_refresh.on("click", function(e) {
+      //var btn_refresh = $(this),
+      var checked = btn_refresh.is(":checked");
+
+      if (checked) {
+        trafficLayer.startAutoRefresh();
+      } else {
+        trafficLayer.endAutoRefresh();
+      }
+    });
+
+    naver.maps.Event.once(map, 'init_stylemap', function() {
+      trafficLayer.setMap(map);
+    });
+  </script>
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
