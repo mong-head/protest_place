@@ -5,22 +5,31 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-  <title>간단한 지도 표시하기</title>
+  <title>집회place</title>
   <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=y0eulc2lst&submodules=geocoder"></script>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="/css/style.css?after">
 </head>
 
 
 <body>
   <div class="map_wrap">
-    <div id="map" style="width:100%;height:600px;overflow:hidden;">
+    <div id="map" style="width:100%;height:600px;">
       <button id="traffic" type="button" class="btn btn-info btn-sm">교통상황</button>
+      <div class="checkbox input-group mb-3">
+        <div class="input-group-prepend" style="display: block;">
+          <div class="input-group-text" style="padding-left: 6px;padding-right: 6px;">
+            <input id="autofresh" type="checkbox" checked="checked" value="1" aria-label="Checkbox for following text input">
+            <label for="autofresh" id="label_">자동 새로고침</label>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
 
   <!-- map변수 -->
@@ -91,5 +100,4 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

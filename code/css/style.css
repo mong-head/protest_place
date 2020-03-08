@@ -1,0 +1,21 @@
+#traffic, .checkbox{
+  position:absolute;
+  top:0;
+  left:0;
+  padding:5px;
+  z-index:10;
+}
+
+#traffic {
+  margin:0 5px 5px 0;
+  top:5px;
+  left:5px;
+}
+.checkbox{
+  top:40px;
+}
+#label_{
+  font-size: 9px;
+  margin-bottom: 0px;
+  padding-left: 5px;
+}
