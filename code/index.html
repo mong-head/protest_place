@@ -1,0 +1,42 @@
+<!-- google api사용함 -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <style media="screen">
+    #map {
+      height: 100%;
+    }
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <title>google map</title>
+
+</head>
+
+<body>
+  <h1>my google map</h1>
+  <div id="map">
+
+  </div>
+  <script>
+    function initMap()
+    {
+      var options={
+        zoom:8,
+        center:{lat : 37.532600, lng : 127.024612}
+      }
+      var map = new google.maps.Map(document.getElementById('map'),options);
+
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhUeatV6FPYjEFNh-a2GG3BFOYTkDO6JE&callback=initMap">
+  </script>
+
+</body>
+
+</html>
