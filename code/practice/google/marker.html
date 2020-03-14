@@ -1,0 +1,95 @@
+<!-- google api사용함 -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <style media="screen">
+    #map {
+      width: 100%;
+      height: 500px;
+      background-color: grey;
+    }
+  </style>
+  <title>google map</title>
+
+</head>
+
+<body>
+  <h1>my google map2</h1>
+  <div id="map"> </div>
+  <script>
+    function initMap() {
+      var options = {
+        zoom: 12,
+        center: {
+          lat: 37.532600,
+          lng: 127.024612
+        }
+      }
+      //new map
+      var map = new google.maps.Map(document.getElementById('map'), options);
+
+      //listen for click on map - 클릭시 add marker
+      google.maps.event.addListener(map,'click',
+        function(event){
+          //add marker
+          add_marker({coords:event.latLng});
+        }
+      );
+
+      //array of markers
+      var markers = [
+        {
+          coords: {
+            lat: 37.532600,
+            lng: 127.024612
+          },
+          icon_image: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+          content: '<h1>seoul</h1>'
+        },
+        {
+          coords: {
+            lat: 37.570218,
+            lng: 126.983006
+          },
+          content: '<h1>종로2가</h1>'
+        }
+      ];
+
+      for(var i=0;i<markers.length;i++)
+      {
+        add_marker(markers[i]);
+      }
+
+      //add marker function
+      function add_marker(props) {
+        //add marker
+        var marker = new google.maps.Marker({
+          position: props.coords,
+          map: map
+          //icon:props.icon_image
+        });
+
+        if (props.icon_image) {
+          marker.setIcon(props.icon_image);
+        }
+
+        if (props.content) {
+          var info_window = new google.maps.InfoWindow({
+            content : props.content
+          });
+          marker.addListener('click',function(){
+            info_window.open(map,marker);
+          });
+        }
+      }
+    }
+  </script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhUeatV6FPYjEFNh-a2GG3BFOYTkDO6JE&callback=initMap">
+  </script>
+
+</body>
+
+</html>

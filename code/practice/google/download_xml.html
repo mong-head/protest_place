@@ -41,8 +41,7 @@
       });
       var info_window = new google.maps.InfoWindow;
 
-      //'https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml'
-      downloadUrl('create_xml.php', function(data) {
+      downloadUrl('https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml', function(data) {
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('marker');
         Array.prototype.forEach.call(markers, function(markerElem) {

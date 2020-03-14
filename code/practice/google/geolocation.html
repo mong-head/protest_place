@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>내위치</title>
+
+  <!-- online : "/css"해야하지만, localhost는 "/없애야함" -->
+  <!-- online용 -->
+  <!-- <link rel="stylesheet" type="text/css" href="/css/style.css?after"> -->
+  <!-- localhost용 -->
+  <link rel="stylesheet" type="text/css" href="css/style.css?after">
+</head>
+
+<body>
+  <div id="map">
+  </div>
+  <script>
+    var map, info_window;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: new google.maps.LatLng(37.532600, 127.024612),
+        // mapTypeId: 'terrain'
+      });
+
+      info_window = new google.maps.InfoWindow;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          info_window.setPosition(pos);
+          info_window.setContent('현재 위치');
+          info_window.open(map);
+          map.setCenter(pos);
+        }, function() {
+          handleLocationError(true, info_window, map.getCenter());
+        });
+      } else {
+        //browser가 geolocation을 support하지 않으면
+        handleLocationError(false, info_window, map.getCenter());
+      }
+    }
+
+    function handleLocationError(browserHasGeolocation, info_window, pos) {
+      info_window.setPosition(pos);
+      info_window.setContent(
+        browserHasGeolocation ?
+        'Error : geolocation service failed' :
+        'Error : your browser doesn\'t support geolocation!');
+      info_window.open(map);
+    }
+
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhUeatV6FPYjEFNh-a2GG3BFOYTkDO6JE&callback=initMap">
+  </script>
+</body>
+
+</html>

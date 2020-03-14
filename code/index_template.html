@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>지도</title>
+
+  <!-- online : "/css"해야하지만, localhost는 "/없애야함" -->
+  <!-- online용 -->
+  <!-- <link rel="stylesheet" type="text/css" href="/css/style.css?after"> -->
+  <!-- localhost용 -->
+  <link rel="stylesheet" type="text/css" href="css/style.css?after">
+</head>
+
+<body>
+  <div id="map">
+  </div>
+  <script>
+    var map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: new google.maps.LatLng(37.532600, 127.024612),
+        mapTypeId: 'terrain'
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhUeatV6FPYjEFNh-a2GG3BFOYTkDO6JE&callback=initMap">
+  </script>
+</body>
+
+</html>
